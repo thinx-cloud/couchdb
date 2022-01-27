@@ -4,10 +4,15 @@ orbs:
   docker: circleci/docker@2.0.1
 
 workflows:
-  build-docker-image-only:
+  build-workflow:
     jobs:
-      - docker/publish:
+      - build-and-push:
           context:
             - dockerhub
+
+jobs:
+  build-and-push:
+    steps:
+      - docker/publish:
           image: thinxcloud/couchdb
           update-description: true
