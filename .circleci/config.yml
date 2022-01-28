@@ -9,5 +9,6 @@ context:
 workflows:
   build-docker-image-only:
     jobs:
+      - docker/check
       - docker/publish:
           image: thinxcloud/couchdb
