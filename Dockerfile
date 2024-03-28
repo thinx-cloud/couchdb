@@ -1,4 +1,4 @@
-FROM couchdb:3.2.1
+FROM couchdb:3
 
 LABEL name="thinxcloud/couchdb" version="1.5.101"
 
