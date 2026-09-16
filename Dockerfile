@@ -1,5 +1,5 @@
-FROM couchdb:3
+FROM dhi.io/couchdb:3-debian-fips
 
-LABEL name="thinxcloud/couchdb" version="1.5.101"
+LABEL name="thinxcloud/couchdb" version="3.5.101"
 
 COPY ./etc /opt/couchdb/etc
