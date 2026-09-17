@@ -26,5 +26,9 @@ workflows:
           name: Build and Publish to Docker Hub
           image: thinxcloud/couchdb
           tag: "$CIRCLE_SHA1,latest"
+          before_build:
+            - run:
+                name: Log in to dhi.io for the hardened base image
+                command: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_LOGIN" --password-stdin dhi.io
           context:
             - dockerhub
