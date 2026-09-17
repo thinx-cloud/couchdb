@@ -1,16 +1,24 @@
 version: 2.1
 
-orbs: 
+orbs:
   docker: circleci/docker@2.8.0
-  ggshield: gitguardian/ggshield@1.1.4
+
+jobs:
+  ggshield-scan:
+    docker:
+      - image: gitguardian/ggshield:latest
+    environment:
+      CIRCLE_RANGE: <<pipeline.git.base_revision>>...<<pipeline.git.revision>>
+    steps:
+      - checkout:
+          method: full
+      - run: ggshield secret scan -v ci
 
 workflows:
   build-and-publish:
     jobs:
-      - ggshield/scan:
+      - ggshield-scan:
           name: Scan using Gitguardian shield
-          base_revision: <<pipeline.git.base_revision>>
-          revision: <<pipeline.git.revision>>
           context:
             - gitguardian
 
