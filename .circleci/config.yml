@@ -17,5 +17,6 @@ workflows:
       - docker/publish:
           name: Build and Publish to Docker Hub
           image: thinxcloud/couchdb
+          tag: "$CIRCLE_SHA1,latest"
           context:
             - dockerhub
