@@ -30,5 +30,8 @@ workflows:
             - run:
                 name: Log in to dhi.io for the hardened base image
                 command: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_LOGIN" --password-stdin dhi.io
+          filters:
+            branches:
+              only: main
           context:
             - dockerhub
