@@ -7,6 +7,9 @@ jobs:
   ggshield-scan:
     docker:
       - image: gitguardian/ggshield:v1.54.0@sha256:5666b10fc479e8baba3aeb9c42d9537cddd0df79fd6b4502397925690f1b4105
+        auth:
+          username: $DOCKER_LOGIN
+          password: $DOCKER_PASSWORD
     environment:
       CIRCLE_RANGE: <<pipeline.git.base_revision>>...<<pipeline.git.revision>>
     steps:
@@ -21,6 +24,7 @@ workflows:
           name: Scan using Gitguardian shield
           context:
             - gitguardian
+            - dockerhub
 
       - docker/publish:
           name: Build and Publish to Docker Hub
