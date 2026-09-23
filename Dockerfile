@@ -1,4 +1,4 @@
-FROM dhi.io/couchdb:3.5.2-debian13
+FROM dhi.io/couchdb:3
 
 LABEL name="thinxcloud/couchdb" version="3.5.101"
 

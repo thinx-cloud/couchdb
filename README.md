@@ -6,4 +6,6 @@
 
 A fork of CouchDB Server with some configuration required to start THiNX components like this one from cloud-based resources only using environment configuration.
 
-Based on hardened CouchDB (3-debian-fips).
+Based on the Docker Hardened Image `dhi.io/couchdb:3` (Debian 13). Runs as
+uid/gid `65532`, not root: bind-mounted `data` and `etc` directories must be
+owned by `65532:65532`, because the entrypoint can no longer `chown` them.
